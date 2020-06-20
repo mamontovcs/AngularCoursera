@@ -1,3 +1,4 @@
+import { DishService } from './services/dish.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -34,7 +35,11 @@ import { DishdetailComponent } from './dishdetail/dishdetail.component';
     MatCardModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [
+
+    DishService
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
