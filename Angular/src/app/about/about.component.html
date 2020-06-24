@@ -1,1 +1,77 @@
-<p>about works!</p>
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+
+    <div fxFlex>
+        <div>
+            <h3>About Us</h3>
+            <hr>
+        </div>
+    </div>
+
+    <div fxFlex>
+        <div fxLayout="column" fxLayout.gt-sm="row">
+            <div fxFlex="70">
+                <h2>Our History</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit nihil voluptatum saepe alias pariatur iusto, esse, quo error voluptatibus velit illum consectetur exercitationem magni praesentium officiis ex, odio omnis consequatur aliquam
+                    voluptate perspiciatis optio necessitatibus illo possimus! Unde dicta mollitia ea, sit, iste amet minima accusantium sint, saepe veniam aut?</p>
+                <p> <em>Mamontov Vitaliy</em>, Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque, ab.</p>
+            </div>
+            <div fxFlex="30">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>
+                            <h2>Facts At a Glance</h2>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <dl>
+                            <dt>Lorem</dt>
+                            <dd>Lorem</dd>
+                            <dt>Lorem</dt>
+                            <dd>Lorem</dd>
+                            <dt>Lorem</dt>
+                            <dd>Lorem</dd>
+                            <dt>Lorem</dt>
+                            <dd>100</dd>
+                        </dl>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+
+    <div fxFlex>
+        <mat-card>
+            <blockquote>
+                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia libero corporis saepe autem facere error aliquid adipisci! Nisi dolores eaque maiores expedita asperiores delectus recusandae magni necessitatibus impedit ab. Nam.</h3>
+                <footer>Mamontov Vitaliy,
+                    <cite>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, temporibus.</cite>
+                </footer>
+            </blockquote>
+        </mat-card>
+    </div>
+
+
+    <div fxFlex>
+        <mat-list cols="2" rowHeight="200px">
+
+            <mat-list fxFlex>
+                <h2>Corporate Leadership</h2>
+
+                <mat-list-item *ngFor="let leader of leaders">
+                    <img matListAvatar height="200px" src={{leader.image}} alt={{leader.name}}>
+                    <p matLine>
+                        <span> {{leader.name + ' ' + leader.abbr}}  </span>
+                    </p>
+                    <p matLine>
+                        <span> {{leader.designation}} </span>
+                    </p>
+                    <p matLine>
+                        <span> {{leader.description}} Stars </span>
+                    </p>
+                </mat-list-item>
+
+            </mat-list>
+
+        </mat-list>
+    </div>
+</div>
