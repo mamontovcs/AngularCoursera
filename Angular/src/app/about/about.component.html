@@ -69,8 +69,11 @@
                         <span> {{leader.description}} Stars </span>
                     </p>
                 </mat-list-item>
-
             </mat-list>
+            <div fxFlex [hidden]="leaders">
+                <mat-spinner></mat-spinner>
+                <h4>Loading . . . Please Wait :)</h4>
+            </div>
 
         </mat-list>
     </div>
