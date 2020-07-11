@@ -1,6 +1,6 @@
 <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign.gt-md="space-around center" fxLayoutGap="10px" fxLayoutGap.xs="0">
 
-    <div fxFlex="40" *ngIf="dish">
+    <div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
         <mat-card>
 
             <mat-card-header>
@@ -8,7 +8,7 @@
                     <h3>{{dish.name | uppercase}}</h3>
                 </mat-card-title>
             </mat-card-header>
-            <img mat-card-image src={{dish.image}} alt={{dish.name}}>
+            <img mat-card-image src="{{ BaseURL + dish.image}}" alt={{dish.name}}>
             <mat-card-content>
                 <p>{{dish.description}}</p>
             </mat-card-content>
@@ -28,7 +28,7 @@
         </mat-card>
     </div>
 
-    <div fxFlex="40" *ngIf="dish">
+    <div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
         <mat-list fxFlex>
 
             <h1 mat-line>Comments</h1>
@@ -44,7 +44,7 @@
                 </p>
             </mat-list-item>
 
-            <div *ngIf="commentForm.valid">
+            <div>
                 <mat-list-item>
                     <p matLine>
                         <span> {{commentForm.value.comment}} </span>
@@ -81,7 +81,7 @@
                     </mat-form-field>
                 </tr>
             </table>
-            <button id='mySubmit' type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-primary" [disabled]="commentForm.invalid">Submit</button> </form>
+            <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-primary" [disabled]="commentForm.invalid">Submit</button> </form>
     </div>
 
     <div fxFlex [hidden]="dish">

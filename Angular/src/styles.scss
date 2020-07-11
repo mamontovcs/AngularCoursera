@@ -16,3 +16,10 @@ body {
 .flex-spacer {
     flex: 1 1 auto;
 }
+
+.highlight {
+    background-color: #e94b3c;
+    border: 1px solid #e94b3c;
+    z-index: 1;
+    transform: scale(1.1);
+}
