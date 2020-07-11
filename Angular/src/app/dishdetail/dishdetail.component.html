@@ -28,7 +28,7 @@
         </mat-card>
     </div>
 
-    <div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
+    <div fxFlex="40" *ngIf="dish" [@visibility]="visibility" [@expand]>
         <mat-list fxFlex>
 
             <h1 mat-line>Comments</h1>
@@ -61,7 +61,7 @@
         </mat-list>
     </div>
 
-    <div fxFlex fxFlex0offset="20px" class="form-size" *ngIf="dish">
+    <div fxFlex fxFlex0offset="20px" class="form-size" *ngIf="dish" [@expand]>
         <h3>Send us your comment!</h3>
         <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()" #fform="ngForm">
             <table class="form-size">
