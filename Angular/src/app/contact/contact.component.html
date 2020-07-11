@@ -76,4 +76,16 @@
             <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-primary" [disabled]="feedbackForm.invalid">Submit</button>
         </form>
     </div>
+    <div>
+        <mat-list [hidden]="(! submitFlag) || (! confirmFlag)" [@expand]="">
+            <h3>Your submission:</h3>
+            <mat-list-item matline="">First name: {{feedbackConfirm.firstname}}</mat-list-item>
+            <mat-list-item matline="">Last name: {{feedbackConfirm.lastname}}</mat-list-item>
+            <mat-list-item matline="">Tel. number: {{feedbackConfirm.telnum}}</mat-list-item>
+            <mat-list-item matline="">Email: {{feedbackConfirm.email}}</mat-list-item>
+            <mat-list-item matline="">Contact you?: {{feedbackConfirm.agree}}</mat-list-item>
+            <mat-list-item matline="">How?: {{feedbackConfirm.contacttype}}</mat-list-item>
+            <mat-list-item matline="">Feedback: {{feedbackConfirm.message}}</mat-list-item>
+        </mat-list>
+    </div>
 </div>

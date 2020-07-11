@@ -1,8 +1,12 @@
+import { FeedbackService } from './../services/feedback.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder , FormGroup , Validators } from '@angular/forms';
 import { Feedback , ContactType} from '../shared/feedback';
-import { ReactiveFormsModule } from '@angular/forms';
 import { flyInOut, expand } from '../animations/app.animation';
+import { switchMap } from 'rxjs/operators';
+import { Params } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact',
@@ -19,15 +23,20 @@ import { flyInOut, expand } from '../animations/app.animation';
     ]
 })
 export class ContactComponent implements OnInit {
+  route: any;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private feedBackService: FeedbackService) {
 
     this.createForm();
    }
 
   feedbackForm: FormGroup;
   feedback: Feedback;
+  submitFlag = false;
+  confirmFlag = false;
   contactType = ContactType;
+  feedbackConfirm: Feedback;
   @ViewChild('fform') feedbackFormDirective;
 
   formErrors = {
@@ -59,6 +68,7 @@ export class ContactComponent implements OnInit {
   };
 
   ngOnInit(): void {
+
   }
 
   createForm(){
@@ -79,19 +89,25 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit(){
+    this.submitFlag = true;
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
-    this.feedbackForm.reset({
-      firstname: '',
-      lastname: '',
-      telnum: 0,
-      email: '',
-      agree: false,
-      contacttype: 'None',
-      message: ''
-    });
 
-    this.feedbackFormDirective.resetForm();
+    this.feedBackService.putFeedback(this.feedback)
+      .subscribe(confirm => {this.feedbackConfirm = confirm; this.confirmFlag = true; });
+
+    setTimeout(() => {this.submitFlag = false; this.confirmFlag = false; }, 5000);
+
+    this.feedbackForm.reset({
+    firstname: '',
+    lastname: '',
+    telnum: 0,
+    email: '',
+    agree: false,
+    contacttype: 'None',
+    message: ''
+    });
+    
   }
 
   onValueChanged(data?: any) {

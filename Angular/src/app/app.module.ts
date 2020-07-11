@@ -1,5 +1,17 @@
+import { AppRoutingModule } from './app-routing.module';
+export function RestangularConfigFactory(RestangularProvider) {
+  RestangularProvider.setBaseUrl(baseURL);
+}
+
+export const RESTANGULAR_FEEDBACKS = new InjectionToken<any>('RestangularFeedbacks');
+export function RestangularFeedbacksFactory(restangular: Restangular) {
+  return restangular.withConfig((RestangularConfigurer) => {
+     RestangularConfigurer.setBaseUrl(baseURL);
+   });
+}
+
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, InjectionToken } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
@@ -23,7 +35,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import 'hammerjs';
@@ -34,9 +45,11 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { RestangularModule, Restangular, RestangularHttp  } from 'ngx-restangular';
 
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
+import { FeedbackService } from './services/feedback.service';
 import { LeaderService } from './services/leader.service';
 import { ProcessHTTPMsgService  } from './services/process-httpmsg.service';
 import { LoginComponent } from './login/login.component';
@@ -77,13 +90,18 @@ import { HighlightDirective } from './directives/highlight.directive';
     MatSelectModule,
     MatProgressSpinnerModule,
     MatSliderModule,
-    HttpClientModule
+    HttpClientModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
   providers: [
     DishService,
     PromotionService,
     LeaderService,
     ProcessHTTPMsgService,
+    FeedbackService,
+    RestangularHttp,
+    Restangular,
+    {provide: RESTANGULAR_FEEDBACKS, useFactory: RestangularFeedbacksFactory, deps: [Restangular]},
     {provide: 'BaseURL', useValue: baseURL}
   ],
   entryComponents: [
